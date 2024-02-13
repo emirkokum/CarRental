@@ -10,20 +10,24 @@ internal class Program
     {
         ICarService carManager = new CarManager(new EfCarDal());
 
+        //GetCars(carManager);
+
+        carManager.GetAll();
+
+
+    }
+
+    private static void GetCars(ICarService carManager)
+    {
         int i = 1;
-        foreach (var car in carManager.GetAll()) 
+        foreach (var car in carManager.GetAll())
         {
             Console.WriteLine($"CAR {i}");
-            Console.WriteLine(car.Id);     
+            Console.WriteLine(car.Id);
             Console.WriteLine(car.ModelYear);
             Console.WriteLine(car.CarDescription);
             Console.WriteLine("----------");
             i++;
         }
-
-        //Car car5 = new Car() { Id=5,BrandId=5,ColorId=3,DailyPrice= -20,CarDescription="a",ModelYear="2015"};
-        //carManager.Add(car5);
-
-
     }
 }

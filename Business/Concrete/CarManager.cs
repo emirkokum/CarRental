@@ -20,15 +20,7 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            if (car.CarDescription.Length <= 2 | car.DailyPrice <= 0)
-            {
-                Console.WriteLine("Can't add car.");
-            }
-            else 
-            {
-                _carDal.Add(car);
-                Console.WriteLine($"{car.CarDescription} added to the database.");
-            }
+            _carDal.Add(car);
         }
 
         public List<Car> GetAll()
