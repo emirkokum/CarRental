@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,17 @@ namespace Business.Abstract
 
         List<Car> GetAll();
 
+        Car GetById(int id);
+
+        void Update(Car car);
+
+        void Delete(int id);
+
         List<Car> GetCarsByBrandId(int id);
 
         List<Car> GetCarByColorId(int id);
+
+        List<CarDetailDto> GetCarDetails();
 
     }
 }

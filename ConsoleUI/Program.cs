@@ -9,15 +9,33 @@ internal class Program
     public static void Main(string[] args)
     {
         ICarService carManager = new CarManager(new EfCarDal());
-
-        //GetCars(carManager);
-
-        carManager.GetAll();
-
-
+        //AddDeleteTest(carManager);
+        //GetCarDetailsTest(carManager);
+    
+        GetCarDetailsTest(carManager);
+    
     }
 
-    private static void GetCars(ICarService carManager)
+
+    private static void GetCarDetailsTest(ICarService carManager)
+    {
+        foreach (var car in carManager.GetCarDetails())
+        {
+            Console.WriteLine(car.CarName + " | " + car.ColorName + " | " + car.BrandName + " | " + car.DailyPrice);
+
+        }
+    }
+
+    private static void AddDeleteTest(ICarService carManager)
+    {
+        carManager.Add(new Car { Id = 6, BrandId = 2, ColorId = 2, DailyPrice = 500, ModelYear = "2018", CarDescription = "Wolkswagen passat" });
+        GetCarsTest(carManager);
+        Console.WriteLine("----------------");
+        carManager.Delete(6);
+        GetCarsTest(carManager);
+    }
+
+    private static void GetCarsTest(ICarService carManager)
     {
         int i = 1;
         foreach (var car in carManager.GetAll())
