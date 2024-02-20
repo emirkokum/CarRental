@@ -1,5 +1,8 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using Business.Abstract;
 using Business.Concrete;
+using Business.DependencyResolvers.Autofac;
 using Data_Access.Abstract;
 using Data_Access.Concrete.EntityFramework;
 using DataAccess.Abstract;
@@ -15,24 +18,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //  IoC Container
-builder.Services.AddSingleton<ICarService,CarManager>();
-builder.Services.AddSingleton<ICarDal,EfCarDal>();
 
-builder.Services.AddSingleton<IBrandService,BrandManager>();
-builder.Services.AddSingleton<IBrandDal,EfBrandDal>();
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-builder.Services.AddSingleton<IColorService,ColorManager>();
-builder.Services.AddSingleton<IColorDal,EfColorDal>();
-
-builder.Services.AddSingleton<ICustomerService,CustomerManager>();
-builder.Services.AddSingleton<ICustomerDal,EfCustomerDal>();
-
-builder.Services.AddSingleton<IUserService,UserManager>();
-builder.Services.AddSingleton<IUserDal,EfUserDal>();
-
-builder.Services.AddSingleton<IRentalService,RentalManager>();
-builder.Services.AddSingleton<IRentalDal,EfRentalDal>();
-
+builder.Host.ConfigureContainer<ContainerBuilder>(options =>
+{
+    options.RegisterModule(new AutofacBusinessModule());
+});
 
 
 var app = builder.Build();
