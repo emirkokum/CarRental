@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace Entities.Concrete
         public string ModelYear { get; set; }
         public int DailyPrice { get; set; }
         public string CarDescription { get; set; }
-    
+        public virtual ICollection<CarImage> CarImages { get; set; }
     }
 }

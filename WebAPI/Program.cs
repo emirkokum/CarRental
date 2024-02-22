@@ -29,6 +29,10 @@ builder.Host.ConfigureContainer<ContainerBuilder>(options =>
 
 var app = builder.Build();
 
+
+//app.UseStaticFiles();//For car image
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -36,6 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
