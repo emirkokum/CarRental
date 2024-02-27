@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Core.Entities.Concrete;
 using Data_Access.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -34,14 +35,6 @@ internal class Program
         }
     }
 
-    private static void UserTest(IUserService userManager)
-    {
-        userManager.Add(new User { Id = 1, FirstName = "Ali", LastName = "Yılmaz", Email = "aliyilmaz@hotmail.com", Password = "123123123" });
-        foreach (var user in userManager.GetAll().Data)
-        {
-            Console.WriteLine(user.FirstName + " " + user.LastName);
-        }
-    }
 
     private static void CustomerTest(ICustomerService customerManager)
     {
@@ -64,7 +57,7 @@ internal class Program
 
     private static void AddDeleteTest(ICarService carManager)
     {
-        carManager.Add(new Car { Id = 6, BrandId = 2, ColorId = 2, DailyPrice = 500, ModelYear = "2018", CarDescription = "Wolkswagen passat" });
+        carManager.Add(new Car { Id = 6, BrandId = 2, ColorId = 2, DailyPrice = 500, ModelYear = "2018", CarName = "Wolkswagen passat" });
         GetCarsTest(carManager);
         Console.WriteLine("----------------");
         carManager.Delete(6);

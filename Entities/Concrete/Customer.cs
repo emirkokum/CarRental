@@ -12,9 +12,6 @@ namespace Entities.Concrete
         [Key]
         [ForeignKey("User")]
         public int UserId { get; set; }
-
         public string CompanyName { get; set; }
-
-        public virtual User User { get; set; }
     }
 }

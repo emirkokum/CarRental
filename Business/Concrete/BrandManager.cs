@@ -20,6 +20,7 @@ namespace Business.Concrete
 
         IBrandDal _brandDal;
 
+        [SecuredOperation("brand.add")]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);

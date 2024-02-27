@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,5 +18,12 @@ namespace Business.Constants
         internal static string MaintenanceTime = "Maintenance time";
         internal static string EntitiesListed = "Entities listed";
         internal static string CarHasntDelivered = "Car has not delivered yet.";
+        internal static string AccessTokenCreated = "Access Token Has Created";
+        internal static string UserRegistered = "User has registered to the system";
+        internal static string UserCanNotFound = "User not found";
+        internal static string PasswordError = "Password is not true";
+        internal static string SuccessfuLogin = "You Logged in Succesfuly";
+        internal static string UserAlreadyExists = "User already exist";
+        internal static string AuthorizationDenied = "Authorization denied";
     }
 }

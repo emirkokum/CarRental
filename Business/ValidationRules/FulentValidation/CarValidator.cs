@@ -10,8 +10,8 @@ namespace Business.ValidationRules.FulentValidation
     {
         public CarValidator()
         {
-            RuleFor(c => c.CarDescription).NotEmpty();
-            RuleFor(c => c.CarDescription).MinimumLength(5);
+            RuleFor(c => c.CarName).NotEmpty();
+            RuleFor(c => c.CarName).MinimumLength(5);
             RuleFor(c => c.DailyPrice).GreaterThan(100);
 
         }
