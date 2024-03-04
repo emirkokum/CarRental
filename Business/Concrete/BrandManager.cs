@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.EntityAdded);
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
@@ -43,9 +43,6 @@ namespace Business.Concrete
         }
 
 
-        [CacheAspect]
-        [SecuredOperation("admin,user")]
-        [PerformanceAspect(2)]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.EntitiesListed);

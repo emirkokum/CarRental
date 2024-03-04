@@ -22,9 +22,21 @@ internal class Program
         //customerManager.Add(new Customer {UserId = 1,CompanyName = "Microsoft"});
         //RentalTest(rentalManager);
 
-        
 
 
+        //GetRentalDetail(rentalManager);
+
+    }
+
+    private static void GetRentalDetail(IRentalService rentalManager)
+    {
+        var result = rentalManager.GetRentalDetails();
+
+        foreach (var rental in result.Data)
+        {
+            Console.WriteLine(rental.FirstName + rental.LastName + rental.BrandName + rental.RentDate + rental.ReturnDate);
+            Console.WriteLine(result.Message);
+        }
     }
 
     private static void RentalTest(IRentalService rentalManager)
