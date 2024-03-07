@@ -52,6 +52,19 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+
+        [HttpGet("getbycarid")]
+        public IActionResult GetByCarId(int carId)
+        {
+            //Dependency chain 
+            var result = _rentalService.GetByCarId(carId);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
         {
