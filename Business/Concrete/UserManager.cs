@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class UserManager:IUserService
+    public class UserManager : IUserService
     {
         public UserManager(IUserDal userDal)
         {
@@ -39,6 +39,18 @@ namespace Business.Concrete
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.EntitiesListed);
+        }
+
+        public IDataResult<String> GetUserNameByMail(string email)
+        {
+            if (_userDal.Get(u => u.Email == email) != null)
+            {
+                User user = _userDal.Get(u => u.Email == email);
+                string userName = user.FirstName + " " + user.LastName;
+                return new SuccessDataResult<String>(data:userName,message:Messages.UserNameReturned);
+
+            }
+            return new ErrorDataResult<string>(Messages.ThereIsNoUserWithThisMail);
         }
 
         public IDataResult<User> GetById(int id)

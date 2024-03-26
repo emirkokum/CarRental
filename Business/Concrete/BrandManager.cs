@@ -25,17 +25,17 @@ namespace Business.Concrete
 
         IBrandDal _brandDal;
 
-
+       
         [ValidationAspect(typeof(BrandValidator))]
         [SecuredOperation("admin,brand.add")]
-        [CacheRemoveAspect("IBrandService.Get")]
+        //[CacheRemoveAspect("IBrandService.Get")]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
             return new SuccessResult(Messages.EntityAdded);
         }
 
-        //[SecuredOperation("admin")]
+        [SecuredOperation("admin")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);

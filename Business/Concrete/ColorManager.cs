@@ -18,12 +18,14 @@ namespace Business.Concrete
 
         IColorDal _colorDal;
 
+        [SecuredOperation("admin")]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
             return new SuccessResult(Messages.EntityAdded);
         }
 
+        [SecuredOperation("admin,seller")]
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);

@@ -10,23 +10,24 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        ICarImageService _carImageService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal,ICarImageService carImageService)
         {
+            _carImageService = carImageService;
             _carDal = carDal;
         }
 
-
-
         [ValidationAspect(typeof(CarValidator))]
-        [CacheRemoveAspect("ICarService.Get")]
-        [SecuredOperation("admin,seller")]
+        //[CacheRemoveAspect("ICarService.Get")]
+        //[SecuredOperation("admin,seller")]
         public IResult Add(Car car)
         {
             _carDal.Add(car);
@@ -101,5 +102,13 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByBrandAndColorId(brandId,colorId), Messages.EntityDetailsListed);
         }
+
+        [ValidationAspect(typeof(CarValidator))]
+        public IDataResult<int> AddReturnsId(Car car)
+        {
+            _carDal.Add(car);
+            return new SuccessDataResult<int>(car.Id,"message");
+        }
+
     }
 }

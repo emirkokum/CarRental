@@ -26,7 +26,7 @@ namespace Business.Concrete
         {
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user,claims);
-            return new SuccessDataResult<AccessToken>(accessToken,Messages.AccessTokenCreated);
+            return new SuccessDataResult<AccessToken>(accessToken,Messages.SuccessfuLogin);
         }
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
@@ -37,17 +37,18 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.UserCanNotFound);
             }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password,userToCheck.PasswordHash,userToCheck.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
             {
                 return new ErrorDataResult<User>(Messages.PasswordError);
             }
-            return new SuccessDataResult<User>(userToCheck,Messages.SuccessfuLogin);
+
+            return new SuccessDataResult<User>(userToCheck, Messages.SuccessfuLogin);
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordSalt, passwordHash;
-            HashingHelper.CreatePasswordHash(password, out passwordSalt, out passwordHash);
+            HashingHelper.CreatePasswordHash(password, out passwordHash,out passwordSalt);
             var user = new User
             {
                 Email = userForRegisterDto.Email,

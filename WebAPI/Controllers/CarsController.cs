@@ -52,6 +52,17 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        [HttpPost("addreturnsid")]
+        public IActionResult AddReturnsId(Car car)
+        {
+            var result = _carService.AddReturnsId(car);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
         [HttpPost("delete")]
         public IActionResult Delete(int id)
         {

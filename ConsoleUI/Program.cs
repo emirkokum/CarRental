@@ -10,7 +10,6 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        ICarService carManager = new CarManager(new EfCarDal());
         ICustomerService customerManager = new CustomerManager(new EfCustomerDal());
         IUserService userManager = new UserManager(new EfUserDal());
         IRentalService rentalManager = new RentalManager(new EfRentalDal());

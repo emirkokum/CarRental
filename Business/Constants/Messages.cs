@@ -25,5 +25,7 @@ namespace Business.Constants
         internal static string SuccessfuLogin = "You Logged in Succesfuly";
         internal static string UserAlreadyExists = "User already exist";
         internal static string AuthorizationDenied = "Authorization denied";
+        internal static string ThereIsNoUserWithThisMail = "ThereIsNoUserWithThisMail";
+        internal static string UserNameReturned = "UserNameReturned";
     }
 }

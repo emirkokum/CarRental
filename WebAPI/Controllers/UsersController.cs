@@ -41,6 +41,19 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        [HttpGet("getusernamebymail")]
+        public IActionResult GetUserNameByMail(string email)
+        {
+            //Dependency chain 
+            var result = _userService.GetUserNameByMail(email);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
